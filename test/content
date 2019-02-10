@@ -1,0 +1,64 @@
+           <div id="articleContent">
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="PCATTCP介绍"><a href="#PCATTCP介绍" class="headerlink" title="PCATTCP介绍"></a>PCATTCP介绍</h1><p>PCATTCP的前身为Test TCP，Test TCP是BSD操作系统的原生工具，该工具通过控制台输入参数，用于测试TCP或者UDP的通信速度。该项目于1984年启动，现在该工具的源代码早已开放。PCATTCP是Test TCP的windows移植版本，是一个用于测试TCP和UDP通信速度的windows控制台程序。</p>
+<p>如果你是windows用户的话，你可以<a href="https://github.com/HarborZeng/HarborZeng.github.io/releases/tag/2.01.01.08" target="_blank" rel="noopener">点击这里下载PCATTCP.exe</a>这个命令行软件</p>
+<p>用法：</p>
+<ol>
+<li>首先，将其放置到电脑的环境变量中，如<code>C:\Windows\system32\</code></li>
+<li>按下<code>win+R</code>，输入<code>cmd</code>或<code>powershell</code>打开命令行终端</li>
+<li>输入<code>pcattcp</code>按下<code>enter</code>/<code>return</code>就会出现下面的页面</li>
+</ol>
+<pre class=" language-shell"><code class="language-shell">Usage: pcattcp -t [-options] host [ < in ]
+       pcattcp -r [-options > out]
+Common options:
+   -l ##  length of bufs read from or written to network (default 8192)
+   -u     use UDP instead of TCP
+   -p ##  port number to send to or listen at (default 5001)
+   -s     toggle sinkmode (enabled by default)
+            sinkmode enabled:
+               -t: source (transmit) fabricated pattern
+               -r: sink (discard) all received data
+            sinkmode disabled:
+               -t: reads data to be transmitted from stdin
+               -r: writes received data to stdout
+   -A     align the start of buffers to this modulus (default 16384)
+   -O     start buffers at this offset from the modulus (default 0)
+   -v     verbose: print more statistics
+   -d     set SO_DEBUG socket option
+   -b ##  set socket buffer size (if supported)
+   -f X   format for rate: k,K = kilo{bit,byte}; m,M = mega; g,G = giga
+   -c       -t: send continuously
+            -r: accept multiple connections sequentially
+   -R     concurrent TCP/UDP multithreaded receiver
+Options specific to -t:
+   -n ##  number of source bufs written to network (default 2048)
+   -D     don't buffer TCP writes (sets TCP_NODELAY socket option)
+   -w ##  milliseconds of delay before each write (default 0)
+   -L ##  desired transmit data rate in bytes/second
+Options specific to -r:
+   -B     for -s, only output full blocks as specified by -l (for TAR)
+   -T     "touch": access each byte as it's read
+</code></pre>
+<h1 id="通信双方信息"><a href="#通信双方信息" class="headerlink" title="通信双方信息"></a>通信双方信息</h1><h2 id="接收方"><a href="#接收方" class="headerlink" title="接收方"></a>接收方</h2><pre class=" language-shell"><code class="language-shell">pcattcp -r -c
+</code></pre>
+<ul>
+<li>参数<code>-r</code>表示服务器端模式，该设备处于接收状态。</li>
+<li>参数<code>-c</code>表示该设备工作于连续模式。</li>
+</ul>
+<img src="/medipx.svg" data-original="/p/nover.png" title="我的X示">
+<h2 id="发送方"><a href="#发送方" class="headerlink" title="发送方"></a>发送方</h2><pre class=" language-shell"><code class="language-shell">pcattcp -t -n 111.114.183.157
+</code></pre>
+<img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/sender.png" title="我的电脑终端显示">
+<h1 id="观察TCP"><a href="#观察TCP" class="headerlink" title="观察TCP"></a>观察TCP</h1><h2 id="TCP第一次握手"><a href="#TCP第一次握手" class="headerlink" title="TCP第一次握手"></a>TCP第一次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake1.png">
+<h2 id="TCP第二次握手"><a href="#TCP第二次握手" class="headerlink" title="TCP第二次握手"></a>TCP第二次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake2.png">
+<h2 id="TCP第三次握手"><a href="#TCP第三次握手" class="headerlink" title="TCP第三次握手"></a>TCP第三次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake3.png">
+<h2 id="开始传送"><a href="#开始传送" class="headerlink" title="开始传送"></a>开始传送</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/transmission_begine.png">
+<h2 id="发送方准备关闭连接"><a href="#发送方准备关闭连接" class="headerlink" title="发送方准备关闭连接"></a>发送方准备关闭连接</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closing.png">
+<h2 id="接收方发送接收到关闭请求，也发送关闭请求"><a href="#接收方发送接收到关闭请求，也发送关闭请求" class="headerlink" title="接收方发送接收到关闭请求，也发送关闭请求"></a>接收方发送接收到关闭请求，也发送关闭请求</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closing_recver.png">
+<h2 id="发送方接收到接收方关闭请求"><a href="#发送方接收到接收方关闭请求" class="headerlink" title="发送方接收到接收方关闭请求"></a>发送方接收到接收方关闭请求</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closed.png">
+<h1 id="试验总结"><a href="#试验总结" class="headerlink" title="试验总结"></a>试验总结</h1><h2 id="连接统计"><a href="#连接统计" class="headerlink" title="连接统计"></a>连接统计</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/connection_statistic.png">
+<h2 id="传送字节数"><a href="#传送字节数" class="headerlink" title="传送字节数"></a>传送字节数</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/bytes_sent.png">
+<h2 id="TCP的三次握手过程"><a href="#TCP的三次握手过程" class="headerlink" title="TCP的三次握手过程"></a>TCP的三次握手过程</h2><ol>
+<li>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认</li>
+<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态。</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
+</ol>

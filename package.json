@@ -1,0 +1,14 @@
+{
+  "name": "hexo-photoswipe",
+  "version": "1.0.1",
+  "main": "index",
+  "author": {
+    "name": "HarborZeng",
+    "email": "harbourzeng@gmail.com",
+    "url": "https://tellyouwhat.cn"
+  },
+  "dependencies": {
+    "hexo-fs": "^1.0.2",
+    "image-size": "^0.7.1"
+  }
+}
