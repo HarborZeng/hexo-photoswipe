@@ -1,10 +1,18 @@
 const sizeOf = require('image-size');
+const path = require('path');
 
-function renderImageResolution(content) {
-    content.replace(/(<img src="(.*)" data-original="(.*)" .*>)/g, function (match, p1, p2, p3, offset, string) {
-        var imageSize = sizeOf(p3)
-        return '<a href="' + p3 + '" data-size="' + imageSize.width + 'x' + imageSize.height + '"> ' + p1 + ' </a>'
-    })
+function renderImageResolution(content, title) {
+  return content.replace(/(<img src="(.*)" data-original="([^"]*)".*>)/g, function (match, p1, p2, p3, offset, string) {
+    title = title.replace(/[,_:'";?!@><.]/gi, '-').replace(/ /g, '')
+    var img = p3.replace(/(\/p\/)(.*)(\/.*)/g, title + '$3')
+    img = path.join("source/_posts", img)
+    if (p3.indexOf('http') == -1) {
+      var imageSize = sizeOf(img)
+      return '<a href="' + p3 + '" data-type="content-image" data-size="' + imageSize.width + 'x' + imageSize.height + '"> ' + p1 + ' </a>'
+    } else {
+      return '<a href="' + p3 + '" data-type="content-image"> ' + p1 + ' </a>'
+    }
+  })
 }
 
 module.exports = renderImageResolution

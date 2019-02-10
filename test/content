@@ -1,64 +1,975 @@
-           <div id="articleContent">
-                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="PCATTCP介绍"><a href="#PCATTCP介绍" class="headerlink" title="PCATTCP介绍"></a>PCATTCP介绍</h1><p>PCATTCP的前身为Test TCP，Test TCP是BSD操作系统的原生工具，该工具通过控制台输入参数，用于测试TCP或者UDP的通信速度。该项目于1984年启动，现在该工具的源代码早已开放。PCATTCP是Test TCP的windows移植版本，是一个用于测试TCP和UDP通信速度的windows控制台程序。</p>
-<p>如果你是windows用户的话，你可以<a href="https://github.com/HarborZeng/HarborZeng.github.io/releases/tag/2.01.01.08" target="_blank" rel="noopener">点击这里下载PCATTCP.exe</a>这个命令行软件</p>
-<p>用法：</p>
-<ol>
-<li>首先，将其放置到电脑的环境变量中，如<code>C:\Windows\system32\</code></li>
-<li>按下<code>win+R</code>，输入<code>cmd</code>或<code>powershell</code>打开命令行终端</li>
-<li>输入<code>pcattcp</code>按下<code>enter</code>/<code>return</code>就会出现下面的页面</li>
-</ol>
-<pre class=" language-shell"><code class="language-shell">Usage: pcattcp -t [-options] host [ < in ]
-       pcattcp -r [-options > out]
-Common options:
-   -l ##  length of bufs read from or written to network (default 8192)
-   -u     use UDP instead of TCP
-   -p ##  port number to send to or listen at (default 5001)
-   -s     toggle sinkmode (enabled by default)
-            sinkmode enabled:
-               -t: source (transmit) fabricated pattern
-               -r: sink (discard) all received data
-            sinkmode disabled:
-               -t: reads data to be transmitted from stdin
-               -r: writes received data to stdout
-   -A     align the start of buffers to this modulus (default 16384)
-   -O     start buffers at this offset from the modulus (default 0)
-   -v     verbose: print more statistics
-   -d     set SO_DEBUG socket option
-   -b ##  set socket buffer size (if supported)
-   -f X   format for rate: k,K = kilo{bit,byte}; m,M = mega; g,G = giga
-   -c       -t: send continuously
-            -r: accept multiple connections sequentially
-   -R     concurrent TCP/UDP multithreaded receiver
-Options specific to -t:
-   -n ##  number of source bufs written to network (default 2048)
-   -D     don't buffer TCP writes (sets TCP_NODELAY socket option)
-   -w ##  milliseconds of delay before each write (default 0)
-   -L ##  desired transmit data rate in bytes/second
-Options specific to -r:
-   -B     for -s, only output full blocks as specified by -l (for TAR)
-   -T     "touch": access each byte as it's read
-</code></pre>
-<h1 id="通信双方信息"><a href="#通信双方信息" class="headerlink" title="通信双方信息"></a>通信双方信息</h1><h2 id="接收方"><a href="#接收方" class="headerlink" title="接收方"></a>接收方</h2><pre class=" language-shell"><code class="language-shell">pcattcp -r -c
-</code></pre>
-<ul>
-<li>参数<code>-r</code>表示服务器端模式，该设备处于接收状态。</li>
-<li>参数<code>-c</code>表示该设备工作于连续模式。</li>
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="西北大学计算机组成原理期末考试往届复习资料卷子, 告你什么 hexo tellyouwhat">
+    <meta name="description" content="1. [图片]卷子1
+2. [图片]卷子2
+3. [图片]卷子3
+4. [图片]卷子4
+5. [文件] 组成原理A.doc
+6. [文件] 组成原理B.doc
+7. [文件] 计算机组成原理(白中英)本科生试题库整理附答案.dochttps">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#EEEEEE">
+
+    <title>西北大学计算机组成原理期末考试往届复习资料卷子 | 告你什么</title>
+    <script>
+      function getExploreName(){
+        var userAgent = navigator.userAgent;
+        if(userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1){
+          return 'Opera'
+        }else if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1){
+          return 'IE'
+        }else if(userAgent.indexOf("Edge") > -1){
+          return 'Edge'
+        }else if(userAgent.indexOf("Firefox") > -1){
+          return 'Firefox'
+        }else if(userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1){
+          return 'Safari'
+        }else if(userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1){
+          return 'Chrome'
+        }else if(!!window.ActiveXObject || "ActiveXObject" in window){
+          return 'IE>=11'
+        }else{
+          return 'Unkonwn'
+        }
+      }
+
+      (function () {
+        if (getExploreName().indexOf('IE') >= 0) {
+          alert('此网站不支持IE浏览器，请使用chrome、firefox或Safari浏览器')
+          window.location.href = 'https://www.google.com/intl/zh-CN_ALL/chrome/'
+        }
+      })()
+
+    </script>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/materialize/0.97.5/css/materialize.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <!--<link rel="stylesheet" type="text/css" href="/css/my.css">-->
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+
+                        <img src="/medias/logo.svg" class="logo-img hide-on-small-only">
+
+                        <span class="logo-span">告你什么</span>
+                    </a>
+                </div>
+
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+
+            <i class="fa fa-home"></i>
+
+            <span>首页</span>
+        </a>
+    </li>
+
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+
+            <i class="fa fa-archive"></i>
+
+            <span>归档</span>
+        </a>
+    </li>
+
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+
+            <i class="fa fa-bookmark"></i>
+
+            <span>分类</span>
+        </a>
+    </li>
+
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+
+            <i class="fa fa-tags"></i>
+
+            <span>标签</span>
+        </a>
+    </li>
+
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+
+            <i class="fa fa-address-book"></i>
+
+            <span>友情链接</span>
+        </a>
+    </li>
+
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+
+            <i class="fa fa-user-circle-o"></i>
+
+            <span>关于</span>
+        </a>
+    </li>
+
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
 </ul>
-<img src="/medipx.svg" data-original="/p/nover.png" title="我的X示">
-<h2 id="发送方"><a href="#发送方" class="headerlink" title="发送方"></a>发送方</h2><pre class=" language-shell"><code class="language-shell">pcattcp -t -n 111.114.183.157
-</code></pre>
-<img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/sender.png" title="我的电脑终端显示">
-<h1 id="观察TCP"><a href="#观察TCP" class="headerlink" title="观察TCP"></a>观察TCP</h1><h2 id="TCP第一次握手"><a href="#TCP第一次握手" class="headerlink" title="TCP第一次握手"></a>TCP第一次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake1.png">
-<h2 id="TCP第二次握手"><a href="#TCP第二次握手" class="headerlink" title="TCP第二次握手"></a>TCP第二次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake2.png">
-<h2 id="TCP第三次握手"><a href="#TCP第三次握手" class="headerlink" title="TCP第三次握手"></a>TCP第三次握手</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/handshake3.png">
-<h2 id="开始传送"><a href="#开始传送" class="headerlink" title="开始传送"></a>开始传送</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/transmission_begine.png">
-<h2 id="发送方准备关闭连接"><a href="#发送方准备关闭连接" class="headerlink" title="发送方准备关闭连接"></a>发送方准备关闭连接</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closing.png">
-<h2 id="接收方发送接收到关闭请求，也发送关闭请求"><a href="#接收方发送接收到关闭请求，也发送关闭请求" class="headerlink" title="接收方发送接收到关闭请求，也发送关闭请求"></a>接收方发送接收到关闭请求，也发送关闭请求</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closing_recver.png">
-<h2 id="发送方接收到接收方关闭请求"><a href="#发送方接收到接收方关闭请求" class="headerlink" title="发送方接收到接收方关闭请求"></a>发送方接收到接收方关闭请求</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/closed.png">
-<h1 id="试验总结"><a href="#试验总结" class="headerlink" title="试验总结"></a>试验总结</h1><h2 id="连接统计"><a href="#连接统计" class="headerlink" title="连接统计"></a>连接统计</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/connection_statistic.png">
-<h2 id="传送字节数"><a href="#传送字节数" class="headerlink" title="传送字节数"></a>传送字节数</h2><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-software-engineering-network-engineering-practice-experiment-using-pcattcp-to-analyze-tcp-protocol/bytes_sent.png">
-<h2 id="TCP的三次握手过程"><a href="#TCP的三次握手过程" class="headerlink" title="TCP的三次握手过程"></a>TCP的三次握手过程</h2><ol>
-<li>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认</li>
-<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态。</li>
-<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
-</ol>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+
+        <img src="/medias/logo.svg" class="logo-img circle responsive-img">
+
+        <div class="logo-name">告你什么</div>
+        <div class="logo-desc">
+
+            A place to tell the truth, the whole truth and nothing but the truth.
+
+        </div>
+    </div>
+
+
+
+    <ul class="menu-list mobile-menu-list">
+
+        <li>
+            <a href="/" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-home"></i>
+
+                首页
+            </a>
+        </li>
+
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-archive"></i>
+
+                归档
+            </a>
+        </li>
+
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-bookmark"></i>
+
+                分类
+            </a>
+        </li>
+
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-tags"></i>
+
+                标签
+            </a>
+        </li>
+
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-address-book"></i>
+
+                友情链接
+            </a>
+        </li>
+
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+
+                <i class="fa fa-fw fa-user-circle-o"></i>
+
+                关于
+            </a>
+        </li>
+
+
+    </ul>
+
+    <div class="social-link">
+    <a href="https://github.com/harborzeng" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:harborzeng@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=757772438" class="tooltipped" data-tooltip="QQ联系我: 757772438" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/p/northwest-university-computer-composition-principles-final-exam-review/cover.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        西北大学计算机组成原理期末考试往届复习资料卷子
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+
+    <link href="https://cdn.bootcss.com/tocbot/4.4.2/tocbot.css" rel="stylesheet">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9 custom-card">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+
+                    <div class="article-tag">
+
+                            <a href="/tags/西北大学/" target="_blank">
+                                <span class="chip bg-color">西北大学</span>
+                            </a>
+
+                            <a href="/tags/期末考试/" target="_blank">
+                                <span class="chip bg-color">期末考试</span>
+                            </a>
+
+                            <a href="/tags/计算机组成原理/" target="_blank">
+                                <span class="chip bg-color">计算机组成原理</span>
+                            </a>
+
+                            <a href="/tags/CPU/" target="_blank">
+                                <span class="chip bg-color">CPU</span>
+                            </a>
+
+                            <a href="/tags/寄存器/" target="_blank">
+                                <span class="chip bg-color">寄存器</span>
+                            </a>
+
+                    </div>
+
+                </div>
+                <div class="col s5 right-align">
+
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+
+                            <a href="/categories/考试/" class="post-category" target="_blank">
+                                考试
+                            </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-01-28
+                </div>
+
+
+
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        123
+                    </div>
+
+
+
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        1 分
+                    </div>
+
+
+
+
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="1-图片-卷子1"><a href="#1-图片-卷子1" class="headerlink" title="1. [图片]卷子1"></a>1. [图片]卷子1</h1><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-computer-composition-principles-final-exam-review/1.jpg">
+<h1 id="2-图片-卷子2"><a href="#2-图片-卷子2" class="headerlink" title="2. [图片]卷子2"></a>2. [图片]卷子2</h1><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-computer-composition-principles-final-exam-review/2.jpg">
+<h1 id="3-图片-卷子3"><a href="#3-图片-卷子3" class="headerlink" title="3. [图片]卷子3"></a>3. [图片]卷子3</h1><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-computer-composition-principles-final-exam-review/3.jpg">
+<h1 id="4-图片-卷子4"><a href="#4-图片-卷子4" class="headerlink" title="4. [图片]卷子4"></a>4. [图片]卷子4</h1><img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/northwest-university-computer-composition-principles-final-exam-review/4.jpg">
+<h1 id="5-文件-组成原理A-doc"><a href="#5-文件-组成原理A-doc" class="headerlink" title="5. [文件] 组成原理A.doc"></a>5. [文件] 组成原理A.doc</h1><iframe src="https://pan.wps.cn/l/s0kejoa" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+<h1 id="6-文件-组成原理B-doc"><a href="#6-文件-组成原理B-doc" class="headerlink" title="6. [文件] 组成原理B.doc"></a>6. [文件] 组成原理B.doc</h1><iframe src="https://pan.wps.cn/l/saxc0bi" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+<h1 id="7-文件-计算机组成原理-白中英-本科生试题库整理附答案-doc"><a href="#7-文件-计算机组成原理-白中英-本科生试题库整理附答案-doc" class="headerlink" title="7. [文件] 计算机组成原理(白中英)本科生试题库整理附答案.doc"></a>7. [文件] 计算机组成原理(白中英)本科生试题库整理附答案.doc</h1><p><a href="https://pan.wps.cn/l/s1f3htq" target="_blank" rel="noopener">https://pan.wps.cn/l/s1f3htq</a></p>
+<h1 id="8-文件-计算机组成原理常考样卷及完整答案-doc"><a href="#8-文件-计算机组成原理常考样卷及完整答案-doc" class="headerlink" title="8. [文件] 计算机组成原理常考样卷及完整答案.doc"></a>8. [文件] 计算机组成原理常考样卷及完整答案.doc</h1><p><a href="https://pan.wps.cn/l/s38dc3h" target="_blank" rel="noopener">https://pan.wps.cn/l/s38dc3h</a></p>
+<h1 id="9-文件-计算机组成原理经典复习题集锦-附答案-doc"><a href="#9-文件-计算机组成原理经典复习题集锦-附答案-doc" class="headerlink" title="9. [文件] 计算机组成原理经典复习题集锦(附答案).doc"></a>9. [文件] 计算机组成原理经典复习题集锦(附答案).doc</h1><p><a href="https://pan.wps.cn/l/sf26gv5" target="_blank" rel="noopener">https://pan.wps.cn/l/sf26gv5</a></p>
+
+            </div>
+            <hr>
+
+
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">投食</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+
+
+            <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+
+<div id="article-share">
+
+    <div class="social-share" data-disabled="google, facebook, twitter, diandian, tencent"></div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://tellyouwhat.cn" class="b-link-green">告你什么</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/p/northwest-university-computer-composition-principles-final-exam-review/" class="b-link-green">西北大学计算机组成原理期末考试往届复习资料卷子</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+        <link href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'd33c59ca171314827328',
+        clientSecret: 'c0757498220338ddd7f39449c6d61eb9b479b68f',
+        repo: 'HarborZeng.github.io',
+        owner: 'HarborZeng',
+        admin: "HarborZeng",
+        id: '2019-01-28T00-18-03',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/p/northwest-university-software-engineering-review-materials/">
+                    <div class="card-image">
+
+                        <img src="/p/northwest-university-software-engineering-review-materials/cover.jpg" class="responsive-img" alt="西北大学软件工程复习资料卷子">
+
+                        <span class="card-title">西北大学软件工程复习资料卷子</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+
+
+                                    1. [图片]卷子1
+2. [图片]卷子2
+3. [图片]卷子3
+4. [图片]卷子4
+
+
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-28
+                        </span>
+                        <span class="publish-author">
+
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+
+                            <a href="/categories/考试/" class="post-category" target="_blank">
+                                    考试
+                                </a>
+
+
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-action article-tags">
+
+                    <a href="/tags/西北大学/" target="_blank">
+                        <span class="chip bg-color">西北大学</span>
+                    </a>
+
+                    <a href="/tags/期末考试/" target="_blank">
+                        <span class="chip bg-color">期末考试</span>
+                    </a>
+
+                    <a href="/tags/软件工程/" target="_blank">
+                        <span class="chip bg-color">软件工程</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/p/northwest-university-software-engineering-system-management-and-maintenance-review-materials-final-exam/">
+                    <div class="card-image">
+
+                        <img src="/p/northwest-university-software-engineering-system-management-and-maintenance-review-materials-final-exam/cover.png" class="responsive-img" alt="西北大学软件工程系统管理与维护复习资料期末考试">
+
+                        <span class="card-title">西北大学软件工程系统管理与维护复习资料期末考试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+
+
+                                    1. [文件] 复习试题.pdf
+
+
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-27
+                            </span>
+                        <span class="publish-author">
+
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+
+                            <a href="/categories/考试/" class="post-category" target="_blank">
+                                    考试
+                                </a>
+
+
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-action article-tags">
+
+                    <a href="/tags/西北大学/" target="_blank">
+                        <span class="chip bg-color">西北大学</span>
+                    </a>
+
+                    <a href="/tags/期末考试/" target="_blank">
+                        <span class="chip bg-color">期末考试</span>
+                    </a>
+
+                    <a href="/tags/系统管理与维护/" target="_blank">
+                        <span class="chip bg-color">系统管理与维护</span>
+                    </a>
+
+                    <a href="/tags/网络管理/" target="_blank">
+                        <span class="chip bg-color">网络管理</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h1, h2, h3'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            <span>
+                基于<a href="https://hexo.io/" target="_blank"> Hexo</a>
+            &copy;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> matery </a>主题搭建
+            ，托管在<a href="//pages.github.com" target="_blank">Github Pages</a>
+            </span>
+            <br>
+
+            <span id="buildTime">
+                构建于02-11 05:08
+            </span>
+
+
+
+                    <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+
+
+
+                    &nbsp;<i class="fa fa-area-chart"></i>&nbsp;总字数:&nbsp;
+                    <span class="white-color">51.8k</span>
+
+
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/harborzeng" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:harborzeng@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=757772438" class="tooltipped" data-tooltip="QQ联系我: 757772438" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="https://cdn.bootcss.com/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+<script src="https://cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script>!function(i){var o=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,i=t.getAttribute("data-original");n.onload=function(){t.src=i,e&&e()},n.src=i}function n(){for(var t=0;t<o.length;t++)e=o[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(i.innerHeight||document.documentElement.clientHeight)&&c(o[t],function(){o.splice(t,t)});var e,n}n(),i.addEventListener("scroll",function(){var t,e;t=n,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
