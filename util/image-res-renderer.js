@@ -8,9 +8,9 @@ function renderImageResolution(content, title) {
     img = path.join("source/_posts", img)
     if (p3.indexOf('http') == -1) {
       var imageSize = sizeOf(img)
-      return '<a href="' + p3 + '" data-type="content-image" data-size="' + imageSize.width + 'x' + imageSize.height + '"> ' + p1 + ' </a>'
+      return '<div class="image-container"><a href="' + p3 + '" data-type="content-image" data-size="' + imageSize.width + 'x' + imageSize.height + '"> ' + p1 + ' </a></div>'
     } else {
-      return '<a href="' + p3 + '" data-type="content-image"> ' + p1 + ' </a>'
+      return '<div class="image-container"><a href="' + p3 + '" data-type="content-image"> ' + p1 + ' </a></div>'
     }
   })
 }
