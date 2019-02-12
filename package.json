@@ -1,12 +1,22 @@
 {
   "name": "hexo-photoswipe",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "index",
   "author": {
     "name": "HarborZeng",
     "email": "harbourzeng@gmail.com",
     "url": "https://tellyouwhat.cn"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HarborZeng/hexo-photoswipe"
+  },
+  "keywords": [
+    "hexo",
+    "hexo plugin",
+    "image photoswipe"
+  ],
   "dependencies": {
     "image-size": "^0.7.1"
   },
