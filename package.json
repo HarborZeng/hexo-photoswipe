@@ -1,6 +1,6 @@
 {
   "name": "hexo-photoswipe",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index",
   "author": {
     "name": "HarborZeng",
@@ -15,9 +15,10 @@
   "keywords": [
     "hexo",
     "hexo plugin",
-    "image photoswipe"
+    "image",
+    "photoswipe"
   ],
   "dependencies": {
     "image-size": "^0.7.1"
-  },
+  }
 }
