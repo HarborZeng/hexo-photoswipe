@@ -1,16 +1,23 @@
 {
   "name": "hexo-photoswipe",
-  "version": "1.1.5",
+  "version": "1.2.2",
   "main": "index",
   "author": {
     "name": "HarborZeng",
     "email": "harbourzeng@gmail.com",
     "url": "https://tellyouwhat.cn"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HarborZeng/hexo-photoswipe"
+  },
+  "keywords": [
+    "hexo",
+    "hexo plugin",
+    "image photoswipe"
+  ],
   "dependencies": {
     "image-size": "^0.7.1"
   },
-  "__npminstall_done": "Sun Feb 10 2019 16:01:35 GMT+0800 (中国标准时间)",
-  "_from": "hexo-photoswipe@1.0.1",
-  "_resolved": "http://registry.npm.taobao.org/hexo-photoswipe/download/hexo-photoswipe-1.0.1.tgz"
 }
