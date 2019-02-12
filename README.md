@@ -1,5 +1,8 @@
 # hexo-photoswipe
 
+[![npm version](https://badge.fury.io/js/hexo-photoswipe.svg)](https://badge.fury.io/js/hexo-photoswipe)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d560a7b3a2244d6487c379ef444f1f72)](https://www.codacy.com/app/HarborZeng/hexo-photoswipe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HarborZeng/hexo-photoswipe&amp;utm_campaign=Badge_Grade)
+
 ## What is hexo-photoswipe
 
 When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded. 
@@ -16,7 +19,7 @@ Note that, this plugin detect the image size/resolution two ways.
 
 One is that images are stored in `yourTitle/someImage.format` which means images are introduced in {% asset_img foo.bar "foobar some text" %} way.
 
-The other is that images are quoted as http(s), which means images are introduced in ![foobar some text](http(s)://www.john.doe/foo.bar) way
+The other is that images are quoted as http(s), which means images are introduced in \!\[foobar some text\](http(s)://www.john.doe/foo.bar) way
 
 ### install 
 
@@ -47,6 +50,8 @@ Finally, you write some code using [photoswipe](https://photoswipe.com/) in your
 ## demo
 
 ![demo](https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif)
+
+if the image load filed, please visit <https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif>
 
 ## LICENSE
 
