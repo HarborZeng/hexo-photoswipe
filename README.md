@@ -33,3 +33,11 @@ and boom, you have a `div`-contained `img` tag which also contains something lik
 Finally, you write some code using [photoswipe](https://photoswipe.com/) in your `somefilename.js`
 
 > If you have no idea what to do, please open an issue at github: <https://github.com/HarborZeng/hexo-photoswipe/issues>
+
+## demo
+
+![demo](https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif)
+
+## LICENSE
+
+MIT
