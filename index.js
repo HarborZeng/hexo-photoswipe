@@ -1,6 +1,8 @@
 const renderImageResolution = require('./util/image-res-renderer');
 
-hexo.extend.filter.register('after_post_render', function (data) {
-    data.content = renderImageResolution(data.content, data.title)
-    return data
-}, 15)
+if (hexo.config.photoswipe && hexo.config.photoswipe.enable) {
+    hexo.extend.filter.register('after_post_render', function (data) {
+        data.content = renderImageResolution(data.content, data.title)
+        return data
+    }, 15)
+}

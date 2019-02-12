@@ -8,11 +8,11 @@ function renderImageResolution(content, title) {
     img = path.join("source/_posts", img)
     if (p3.indexOf('http') === 0) {
       // 以http开头的data-origianl属性
-      return '<div class="image-container" data-type="content-image">' + p1 + '</div>'
+      return '<div class="' + hexo.config.photoswipe.className + '" data-type="' + hexo.config.photoswipe.dataType + '">' + p1 + '</div>'
     } else {
       // 本地图片，可以求取大小
       var imageSize = sizeOf(img)
-      return '<div class="image-container" data-type="content-image" data-size="' + imageSize.width + 'x' + imageSize.height + '">' + p1 + '</div>'
+      return '<div class="' + hexo.config.photoswipe.className + '" data-type="' + hexo.config.photoswipe.dataType + '" data-size="' + imageSize.width + 'x' + imageSize.height + '">' + p1 + '</div>'
     }
   })
 }

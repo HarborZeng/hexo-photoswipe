@@ -12,6 +12,12 @@ Note that, this is not an **Out of the box** plugin, because it's built for me p
 
 Note that, `hexo-photoswipe` is based on [hexo-lazyload-image](https://www.npmjs.com/package/hexo-lazyload-image), which will generate the `data-original` attr in `img` tag.
 
+Note that, this plugin detect the image size/resolution two ways.
+
+One is that images are stored in `yourTitle/someImage.format` which means images are introduced in {% asset_img foo.bar "foobar some text" %} way.
+
+The other is that images are quoted as http(s), which means images are introduced in ![foobar some text](http(s)://www.john.doe/foo.bar) way
+
 ### install 
 
 So, first you install `hexo-lazyload-image`:
@@ -49,6 +55,18 @@ MIT
 ## Demo
 
 Suppose you have installed the dependencies above. Then you may proceed.
+
+### 0. Enable the plugin
+
+in your hexo blog's `_config.yml`:
+
+```yaml
+# <div class="image-container" data-type="content-image" data-size="100x100"><img src="xxx" data-original="yyy"></img></div>'
+photoswipe:
+  enable: true
+  className: image-container
+  dataType: content-image
+```
 
 ### 1. include JS and CSS files
 
@@ -170,7 +188,7 @@ $('someSelectorToYourImage').each(function (index) {
   }
   
   if (this.parentNode.getAttribute('data-size')) {
-    // images uploaded in {% asset_img foo.bar "foobar some text" %} way
+    // images introduced in {% asset_img foo.bar "foobar some text" %} way
     let resolution = this.parentNode.getAttribute('data-size').split('x')
     imgSrcItem.push({
       src: imgPath,
@@ -179,7 +197,7 @@ $('someSelectorToYourImage').each(function (index) {
       title: captionText
     })
   } else {
-    // images uploaded in ![foobar some text](http(s)://www.john.doe/foo.bar) way
+    // images introduced in ![foobar some text](http(s)://www.john.doe/foo.bar) way
     imgSrcItem.push({
         src: imgPath,
         w: this.naturalWidth || window.innerWidth,
