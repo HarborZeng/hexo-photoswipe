@@ -6,7 +6,7 @@ function renderImageResolution(content, title) {
   let imgTagRegExp_src = /(<(img) src="([^"]*)"[^<]*>)/g
   return content.replace(hexo.config.photoswipe.imgSrcIn === 'dataOriginal' ? imgTagRegExp_dataOriginal : imgTagRegExp_src, function (match, p1, p2, p3, offset, string) {
     title = title.replace(/[,_:'";?!@><.]/gi, '-').replace(/ /g, '')
-    var img = p3.replace(/\/.*\/([^"]*)"/g, title + '$2')
+    var img = p3.replace(/\/.*\/([^"]*)/g, path.join(title, '$1'))
     img = path.join(hexo.config.photoswipe.imageFileBaseDir, img)
     if (p3.indexOf('http') === 0) {
       // 以http开头的data-origianl属性
