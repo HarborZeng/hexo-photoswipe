@@ -1,13 +1,15 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="什么是SYN-FLOOD"><a href="#什么是SYN-FLOOD" class="headerlink" title="什么是SYN_FLOOD"></a>什么是SYN_FLOOD</h2><p>若正常通过三次握手过程，则连接就建立了，但是恶意攻击者会刻意伪造ip地址，使得受攻击的主机得不到最后一次握手，只能不断的为到来的syn分配内存，发送syn+ack，就这样一直等不到第三次握手的ack确认。</p>
+                <link rel="stylesheet" type="text$2><h2 id="什么是SYN-FLOOD"><a href="#什么是SYN-FLOOD" class="headerlink" title="什么是SYN_FLOOD"></a>什么是SYN_FLOOD</h2><p>若正常通过三次握手过程，则连接就建立了，但是恶意攻击者会刻意伪造ip地址，使得受攻击的主机得不到最后一次握手，只能不断的为到来的syn分配内存，发送syn+ack，就这样一直等不到第三次握手的ack确认。</p>
 <p>同时开启多个线程运行即可达到攻击效果</p>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>任务管理器展示CPU使用率
-<img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/how-to-use-python-do-the-experiment-of-synflood-attack/task_manager_sc.png"></p>
+/medias/assets/loading/Eclipse-1s-200px.svg</p>
 <p>该网段已无法访问
-<img src="/medias/assets/loading/Eclipse-1s-200px.svg" data-original="/p/how-to-use-python-do-the-experiment-of-synflood-attack/access_sc.png"></p>
+/medias/assets/loading/Eclipse-1s-200px.svg</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> Tools<span class="token punctuation">.</span>scripts<span class="token punctuation">.</span>treesync <span class="token keyword">import</span> raw_input
 <span class="token keyword">from</span> scapy<span class="token punctuation">.</span>all <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">import</span> os
 <span class="token keyword">import</span> sys
 <span class="token keyword">import</span> random
+
+/p/how-to-use-python-do-the-experiment-of-synflood-attack/access_sc.png"
