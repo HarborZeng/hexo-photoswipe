@@ -18,6 +18,9 @@
     "image",
     "photoswipe"
   ],
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
   "dependencies": {
     "image-size": "^0.7.2",
     "sync-request": "^6.0.0"

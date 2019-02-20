@@ -6,21 +6,29 @@
 
 ## What is hexo-photoswipe
 
-When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded. 
+When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded.
 
 `Hexo-photoswipe` is the one that would power you and your photos up.
 
+This plugin is built for [photoswipe](https://photoswipe.com), using which, we can have a very nice looking gallery. But limited to the working theory of photoswipe, photoswipe require the `width` and `height` attributes to exhibit the images/photos, in which case, most iamges do not have these attributes natrually.
+
 ## How to use
 
-Note that, this is not an **Out of the box** plugin. I'll be thrilled if it inspired you some kind.
+Note that, this is not an **Out of the box** plugin. To avoid adding another `js` file in your final website (which makes your website load slow), you are required to copy and modify some code to your somejs file manually. I'll be thrilled if it inspired you some kind.
 
-Note that, although `hexo-photoswipe` is based on [hexo-lazyload-image](https://www.npmjs.com/package/hexo-lazyload-image), which will generate the `data-original` attr in `img` tag. You can config to not using `hexo-lazyload-image`
+We'll get there later.
+
+Note that, [hexo-lazyload-image](https://www.npmjs.com/package/hexo-lazyload-image) is recommanded to install, which will generate the `data-original` attr in `img` tag. However you can config not to use it if you don't need it.
 
 Note that, this plugin detect the image size/resolution two ways.
 
 1. One is that images are stored in `yourTitle/someImage.format` which means images are introduced in {% asset_img foo.bar "foobar some text" %} way.
 
+> for these local images, just calculate the width and height
+
 2. The other is that images are quoted as http(s), which means images are introduced in \!\[foobar some text\](http(s)://www.john.doe/foo.bar) way
+
+> for these online images, download synchronously, and then calculate the width and height one by one
 
 ### install
 
@@ -28,12 +36,6 @@ So, first you install `hexo-lazyload-image`, or omit if you don't want lazyload 
 
 ```shell
 npm install hexo-lazyload-image --save
-```
-
-or my version, which killed some annoying console.log(...)
-
-```shell
-npm install hexo-lazyload-image-modified --save
 ```
 
 Below are how you can config `hexo-lazyload-image`
@@ -225,13 +227,12 @@ $('someSelectorToYourImage').each(function (index) {
     captionEle.className += ' center-caption'
     captionEle.innerText = captionText
     captionDiv.appendChild(captionEle)
-    
+
     // insert where appropriate
     this.parentElement.insertAdjacentElement('afterend', captionDiv)
   }
   
   if (this.parentNode.getAttribute('data-size')) {
-    // images introduced in {% asset_img foo.bar "foobar some text" %} way
     let resolution = this.parentNode.getAttribute('data-size').split('x')
     imgSrcItem.push({
       src: imgPath,
@@ -240,18 +241,11 @@ $('someSelectorToYourImage').each(function (index) {
       title: captionText
     })
   } else {
-    // images introduced in ![foobar some text](http(s)://www.john.doe/foo.bar) way
     imgSrcItem.push({
         src: imgPath,
         w: this.naturalWidth || window.innerWidth,
         h: this.naturalHeight || window.innerHeight,
         title: captionText
-    })
-    
-    // when the image loaded, update the w and h
-    this.addEventListener('load', function (e) {
-        imgSrcItem[index].w = this.naturalWidth
-        imgSrcItem[index].h = this.naturalHeight
     })
   }
 })
