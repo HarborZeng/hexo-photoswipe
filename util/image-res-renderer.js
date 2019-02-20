@@ -1,5 +1,6 @@
 const sizeOf = require('image-size');
 const path = require('path');
+const syncRequest = require('sync-request');
 
 function renderImageResolution(content, title) {
   let imgTagRegExp_dataOriginal = /(<img src="(.*)" data-original="([^"]*)"[^<]*>)/g
@@ -8,14 +9,16 @@ function renderImageResolution(content, title) {
     title = title.replace(/[,_:'";?!@><.]/gi, '-').replace(/ /g, '')
     var img = p3.replace(/\/.*\/([^"]*)/g, path.join(title, '$1'))
     img = path.join(hexo.config.photoswipe.imageFileBaseDir, img)
+    var imageSize
     if (p3.indexOf('http') === 0) {
       // 以http开头的data-origianl属性
-      return '<div class="' + hexo.config.photoswipe.className + '" data-type="' + hexo.config.photoswipe.dataType + '">' + p1 + '</div>'
+      var response = syncRequest("GET", p3)
+      imageSize = sizeOf(response.getBody())
     } else {
       // 本地图片，可以求取大小
-      var imageSize = sizeOf(img)
-      return '<div class="' + hexo.config.photoswipe.className + '" data-type="' + hexo.config.photoswipe.dataType + '" data-size="' + imageSize.width + 'x' + imageSize.height + '">' + p1 + '</div>'
+      imageSize = sizeOf(img)
     }
+    return '<div class="' + hexo.config.photoswipe.className + '" data-type="' + hexo.config.photoswipe.dataType + '" data-size="' + imageSize.width + 'x' + imageSize.height + '">' + p1 + '</div>'
   })
 }
 
