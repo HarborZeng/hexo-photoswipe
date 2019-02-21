@@ -5,6 +5,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/HarborZeng/hexo-photoswipe/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HarborZeng/hexo-photoswipe?targetFile=package.json)
 [![CircleCI](https://circleci.com/gh/HarborZeng/hexo-photoswipe.svg?style=svg)](https://circleci.com/gh/HarborZeng/hexo-photoswipe)
 
+[中文文档](https://github.com/HarborZeng/hexo-photoswipe/blob/master/README_CN.md)
+
 ## What is hexo-photoswipe
 
 When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded.
