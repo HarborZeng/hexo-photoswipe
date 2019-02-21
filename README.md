@@ -36,7 +36,7 @@ Note that, this plugin detect the image size/resolution two ways.
 So, first you install `hexo-lazyload-image`, or omit if you don't want lazyload feature.
 
 ```shell
-npm install hexo-lazyload-image --save
+$ npm install hexo-lazyload-image --save
 ```
 
 Below are how you can config `hexo-lazyload-image`
@@ -64,7 +64,7 @@ lazyload:
 > Run hexo command.
 
 ```shell 
-hexo clean && hexo g
+$ hexo clean
 ```
 
 ------
@@ -72,7 +72,7 @@ hexo clean && hexo g
 Additionally, install `hexo-photoswipe`:
 
 ```shell
-npm install hexo-photoswipe --save
+$ npm install hexo-photoswipe --save
 ```
 
 and boom, you have a `div`-wrapped `img` tag which also contains something like `class="image-container" data-type="content-image" data-size=100x100` in you final render result.
@@ -81,17 +81,18 @@ Finally, you write some code using [photoswipe](https://photoswipe.com/) in your
 
 > If you have no idea what to do, please open an issue at github: <https://github.com/HarborZeng/hexo-photoswipe/issues>
 
-## demo
+## Demo
 
-![demo](https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif)
+![https://github.com/HarborZeng/hexo-photoswipe/blob/master/phone.gif](https://github.com/HarborZeng/hexo-photoswipe/blob/master/phone.gif)
+![https://github.com/HarborZeng/hexo-photoswipe/blob/master/desktop.gif](https://github.com/HarborZeng/hexo-photoswipe/blob/master/desktop.gif)
 
-if the image load filed, please visit <https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif> 
+for online preview, visit <https://tellyouwhat.cn> for details.
 
 ## LICENSE
 
 [MIT](https://github.com/HarborZeng/hexo-photoswipe/blob/master/LICENSE)
 
-## Demo
+## Tutorial
 
 Suppose you have installed the dependencies above. Then you may proceed.
 
@@ -269,6 +270,17 @@ $('someSelectorToYourImage').each(function (i) {
       counterEl: true,
       preloaderEl: true,
       history: false,
+      getThumbBoundsFn: function (index) {
+        // find thumbnail element
+        var thumbnail = document.querySelectorAll('#articleContent img')[index];
+        // get window scroll Y
+        var pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // optionally get horizontal scroll
+        // get position of element relative to viewport
+        var rect = thumbnail.getBoundingClientRect();
+        // w = width
+        return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+      }
     }
     let gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgSrcItem, options)
     gallery.listen('imageLoadComplete', function (index, item) {
