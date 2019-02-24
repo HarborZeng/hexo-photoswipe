@@ -1,7 +1,6 @@
 # hexo-photoswipe
 
 [![npm version](https://badge.fury.io/js/hexo-photoswipe.svg)](https://badge.fury.io/js/hexo-photoswipe)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d560a7b3a2244d6487c379ef444f1f72)](https://www.codacy.com/app/HarborZeng/hexo-photoswipe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HarborZeng/hexo-photoswipe&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/HarborZeng/hexo-photoswipe/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HarborZeng/hexo-photoswipe?targetFile=package.json)
 [![CircleCI](https://circleci.com/gh/HarborZeng/hexo-photoswipe.svg?style=svg)](https://circleci.com/gh/HarborZeng/hexo-photoswipe)
 
@@ -31,7 +30,7 @@ Note that, this plugin detect the image size/resolution two ways.
 
 2. The other is that images are quoted as http(s), which means images are introduced in \!\[foobar some text\](http(s)://www.john.doe/foo.bar) way
 
-> for these online images, download synchronously, and then calculate the width and height one by one
+> for these online images, download synchronously first time, and cache them in your disk, and then calculate the width and height one by one
 
 ### install
 

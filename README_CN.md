@@ -1,7 +1,6 @@
 # hexo-photoswipe
 
 [![npm version](https://badge.fury.io/js/hexo-photoswipe.svg)](https://badge.fury.io/js/hexo-photoswipe)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d560a7b3a2244d6487c379ef444f1f72)](https://www.codacy.com/app/HarborZeng/hexo-photoswipe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HarborZeng/hexo-photoswipe&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/HarborZeng/hexo-photoswipe/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HarborZeng/hexo-photoswipe?targetFile=package.json)
 [![CircleCI](https://circleci.com/gh/HarborZeng/hexo-photoswipe.svg?style=svg)](https://circleci.com/gh/HarborZeng/hexo-photoswipe)
 
@@ -31,7 +30,7 @@
 
 2. 另一种是使用http或https引入的图片，也就是说以markdown的方式： \!\[foobar some text\](http(s)://www.john.doe/foo.bar)
 
-> 对于这些在线的图片，插件将同步的下载他们，然后再计算图片的宽高
+> 对于这些在线的图片，插件将同步的下载他们，并缓存，然后再计算图片的宽高
 
 ### 安装
 
