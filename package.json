@@ -1,6 +1,6 @@
 {
   "name": "hexo-photoswipe",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "index",
   "author": {
     "name": "HarborZeng",
@@ -22,6 +22,7 @@
     "test": "node ./test/test.js"
   },
   "dependencies": {
+    "hexo-fs": "^1.0.2",
     "image-size": "^0.7.2",
     "sync-request": "^6.0.0"
   }
