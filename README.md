@@ -12,7 +12,9 @@ When you use hexo to build an vanilla blog, you might want a fine gallery to exh
 
 `Hexo-photoswipe` is the one that would power you and your photos up.
 
-This plugin is built for [photoswipe](https://photoswipe.com), using which, we can have a very nice looking gallery. But limited to the working theory of photoswipe, photoswipe require the `width` and `height` attributes to exhibit the images/photos, in which case, most iamges do not have these attributes natrually.
+ [photoswipe](https://photoswipe.com) is a beautiful and easy-to-use gallery, but limited to the working theory of which, it require the `width` and `height` attributes to exhibit the images/photos, in which case, most iamges do not have these attributes natrually.
+
+This plugin is built for [photoswipe](https://photoswipe.com), and it would generate `width` and `height` attributes when you run `hexo s` or `hexo g`.
 
 ## How to use
 
@@ -76,7 +78,7 @@ Additionally, install `hexo-photoswipe`:
 $ npm install hexo-photoswipe --save
 ```
 
-and boom, you have a `div`-wrapped `img` tag which also contains something like `class="image-container" data-type="content-image" data-size=100x100` in you final render result.
+and boom, you have a `div`-wrapped `img` tag which also contains something like `class="image-container" data-type="content-image" data-size="100x100"` in you final render result.
 
 Finally, you write some code using [photoswipe](https://photoswipe.com/) in your `somefilename.js`
 
@@ -103,8 +105,8 @@ in your hexo blog's `_config.yml`:
 
 ```yaml
 # <div class="image-container" data-type="content-image" data-size="100x100"><img src="xxx" data-original="yyy"></img></div>'
-# imgSrcIn: dataOriginal if you don't install hexo-lazyload-image, or src as default
-# dataType is a presered attr, usless now but you can custum in your own js with this unique selector.
+# imgSrcIn: dataOriginal if you install hexo-lazyload-image, or src as default
+# dataType is a presered attr. It is usless now but you can custum in your own js with this unique selector.
 # className you can custom the class for div, in your own css file as you want.
 # imageFileBaseDir is the base directory where hexo-photoswipe would find images, eg, source/_posts/my-first-post/cover.jpg. The final pattern is {imageFileBaseDir}/{YourPostTitle}/{imageName}.{imageFormat}.
 photoswipe:

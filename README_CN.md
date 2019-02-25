@@ -10,7 +10,9 @@
 
 `Hexo-photoswipe` 就是你所需要的那个插件！
 
-这个插件是用 [photoswipe](https://photoswipe.com) 来做的，使用它，我们可以轻易得到一个好看的图片浏览器。但是受限于 photoswipe 的工作原理，photoswipe 需要图片宽度和高度的属性，这个对于绝大多数图片来说都是不天生具备的。
+ [photoswipe](https://photoswipe.com)是一个非常漂亮，易于使用的图片浏览器插件，但是受限于 [photoswipe](https://photoswipe.com)的工作原理，photoswipe 需要图片`宽度`和`高度`的属性，这个对于绝大多数图片来说都是不天生具备的。
+
+`Hexo-photoswipe`就是为在`hexo`博客中集成[photoswipe](https://photoswipe.com)设计的，他会在你运行`hexo s`或`hexo g`的时候，生成图片的宽高。
 
 ## 如何使用？
 
@@ -78,7 +80,7 @@ $ npm install hexo-photoswipe --save
 
 然后在配置文件里面启用它。
 
-你的最终渲染页面里面的就会出现被 `div`包裹的 `img` 标签，同时也包含类似这样的属性在里面： `class="image-container" data-type="content-image" data-size=100x100`。
+你的最终渲染页面里面的就会出现被 `div`包裹的 `img` 标签，同时也包含类似这样的属性在里面： `class="image-container" data-type="content-image" data-size="100x100"`。
 
 最后，您再将下文的js，html等复制到您的模板或主题的相关文件里面即可。
 
@@ -105,7 +107,7 @@ $ npm install hexo-photoswipe --save
 
 ```yaml
 # <div class="image-container" data-type="content-image" data-size="100x100"><img src="xxx" data-original="yyy"></img></div>'
-# imgSrcIn: dataOriginal if you don't install hexo-lazyload-image, or src as default
+# imgSrcIn: dataOriginal if you install hexo-lazyload-image, or src as default
 # dataType is a presered attr, usless now but you can custum in your own js with this unique selector.
 # className you can custom the class for div, in your own css file as you want.
 # imageFileBaseDir is the base directory where hexo-photoswipe would find images, eg, source/_posts/my-first-post/cover.jpg. The final pattern is {imageFileBaseDir}/{YourPostTitle}/{imageName}.{imageFormat}.
