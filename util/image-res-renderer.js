@@ -8,14 +8,10 @@ function renderImageResolution(content, title) {
   var imageMap = new Map()
   // 一行一行读取image-size.db内容，不存在就创建之
   fs.writeFileSync(path.join(imageCachePath, 'image-size.db'), '', {"flag": 'a+'})
-  var lineReader = require('readline').createInterface({
-    input: fs.createReadStream(path.join(imageCachePath, 'image-size.db'))
-  });
-
-  lineReader.on('line', function (line) {
+  var lines = fs.readFileSync(path.join(imageCachePath, 'image-size.db')).split('\n').filter(Boolean)
+  lines.forEach(function (line) {
     imageMap.set(line.split(' ')[0], line.split(' ')[1])
-  });
-
+  })
 
   let imgTagRegExp_dataOriginal = /(<img src="(.*)" data-original="([^"]*)"[^<]*>)/g
   let imgTagRegExp_src = /(<(img) src="([^"]*)"[^<]*>)/g
@@ -23,7 +19,7 @@ function renderImageResolution(content, title) {
     title = title.replace(/[,_:'";?!@><.]/gi, '-').replace(/ /g, '')
     var img = p3.replace(/\/.*\/([^"]*)/g, path.join(title, '$1'))
     img = path.join(hexo.config.photoswipe.imageFileBaseDir, img)
-    var imageSize
+    var imageSize = {}
     if (p3.indexOf('http') === 0) {
       // 以http开头的data-origianl属性
       let absImageUrl = /http[s]?:\/\/[^?]*/.exec(p3);
@@ -39,6 +35,7 @@ function renderImageResolution(content, title) {
         var res = imageMap.get(title + ',' + filename).split('x')
         imageSize.width = res[0]
         imageSize.height = res[1]
+        console.log('reading image from db:', filename)
       } else {
 
         if (fs.existsSync(path.join(imageCachePath, filename))) {
