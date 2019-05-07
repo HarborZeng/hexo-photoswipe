@@ -1,7 +1,7 @@
 const sizeOf = require('image-size');
 const path = require('path');
 
-function renderImageResolution(content, title) {
+function renderImageResolution(content, title, config) {
   let imgTagRegExp_dataOriginal = /(<img src="(.*)" data-original="([^"]*)"[^<]*>)/g
   let imgTagRegExp_src = /(<(img) src="([^"]*)"[^<]*>)/g
   return content.replace(hexo.config.photoswipe.imgSrcIn === 'dataOriginal' ? imgTagRegExp_dataOriginal : imgTagRegExp_src, function (match, p1, p2, p3, offset, string) {
