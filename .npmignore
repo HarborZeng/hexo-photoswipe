@@ -1,3 +1,5 @@
 .idea
 node_modules
-presentation.gif
+*.gif
+.circleci
+img-cache

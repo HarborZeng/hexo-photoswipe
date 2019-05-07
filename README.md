@@ -1,39 +1,45 @@
 # hexo-photoswipe
 
 [![npm version](https://badge.fury.io/js/hexo-photoswipe.svg)](https://badge.fury.io/js/hexo-photoswipe)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d560a7b3a2244d6487c379ef444f1f72)](https://www.codacy.com/app/HarborZeng/hexo-photoswipe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HarborZeng/hexo-photoswipe&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/HarborZeng/hexo-photoswipe/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HarborZeng/hexo-photoswipe?targetFile=package.json)
+[![CircleCI](https://circleci.com/gh/HarborZeng/hexo-photoswipe.svg?style=svg)](https://circleci.com/gh/HarborZeng/hexo-photoswipe)
+
+[中文文档](https://github.com/HarborZeng/hexo-photoswipe/blob/master/README_CN.md)
 
 ## What is hexo-photoswipe
 
-When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded. 
+When you use hexo to build an vanilla blog, you might want a fine gallery to exhibit photos you uploaded.
 
 `Hexo-photoswipe` is the one that would power you and your photos up.
 
+ [photoswipe](https://photoswipe.com) is a beautiful and easy-to-use gallery, but limited to the working theory of which, it require the `width` and `height` attributes to exhibit the images/photos, in which case, most iamges do not have these attributes natrually.
+
+This plugin is built for [photoswipe](https://photoswipe.com), and it would generate `width` and `height` attributes when you run `hexo s` or `hexo g`.
+
 ## How to use
 
-Note that, this is not an **Out of the box** plugin. I'll be thrilled if it inspired you some kind.
+Note that, this is not an **Out of the box** plugin. To avoid adding another `js` file in your final website (which makes your website load slow), you are required to copy and modify some code to your somejs file manually. I'll be thrilled if it inspired you some kind.
 
-Note that, although `hexo-photoswipe` is based on [hexo-lazyload-image](https://www.npmjs.com/package/hexo-lazyload-image), which will generate the `data-original` attr in `img` tag. You can config to not using `hexo-lazyload-image`
+We'll get there later.
+
+Note that, [hexo-lazyload-image](https://www.npmjs.com/package/hexo-lazyload-image) is recommanded to install, which will generate the `data-original` attr in `img` tag. However you can config not to use it if you don't need it.
 
 Note that, this plugin detect the image size/resolution two ways.
 
 1. One is that images are stored in `yourTitle/someImage.format` which means images are introduced in {% asset_img foo.bar "foobar some text" %} way.
 
+> for these local images, just calculate the width and height
+
 2. The other is that images are quoted as http(s), which means images are introduced in \!\[foobar some text\](http(s)://www.john.doe/foo.bar) way
+
+> for these online images, download synchronously first time, and cache them in your disk, and then calculate the width and height one by one
 
 ### install
 
 So, first you install `hexo-lazyload-image`, or omit if you don't want lazyload feature.
 
 ```shell
-npm install hexo-lazyload-image --save
-```
-
-or my version, which killed some annoying console.log(...)
-
-```shell
-npm install hexo-lazyload-image-modified --save
+$ npm install hexo-lazyload-image --save
 ```
 
 Below are how you can config `hexo-lazyload-image`
@@ -61,7 +67,7 @@ lazyload:
 > Run hexo command.
 
 ```shell 
-hexo clean && hexo g
+$ hexo clean
 ```
 
 ------
@@ -69,26 +75,27 @@ hexo clean && hexo g
 Additionally, install `hexo-photoswipe`:
 
 ```shell
-npm install hexo-photoswipe --save
+$ npm install hexo-photoswipe --save
 ```
 
-and boom, you have a `div`-wrapped `img` tag which also contains something like `class="image-container" data-type="content-image" data-size=100x100` in you final render result.
+and boom, you have a `div`-wrapped `img` tag which also contains something like `class="image-container" data-type="content-image" data-size="100x100"` in you final render result.
 
 Finally, you write some code using [photoswipe](https://photoswipe.com/) in your `somefilename.js`
 
 > If you have no idea what to do, please open an issue at github: <https://github.com/HarborZeng/hexo-photoswipe/issues>
 
-## demo
+## Demo
 
-![demo](https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif)
+![https://github.com/HarborZeng/hexo-photoswipe/blob/master/phone.gif](https://github.com/HarborZeng/hexo-photoswipe/blob/master/phone.gif)
+![https://github.com/HarborZeng/hexo-photoswipe/blob/master/desktop.gif](https://github.com/HarborZeng/hexo-photoswipe/blob/master/desktop.gif)
 
-if the image load filed, please visit <https://github.com/HarborZeng/hexo-photoswipe/blob/master/presentation.gif> 
+for online preview, visit <https://tellyouwhat.cn> for details.
 
 ## LICENSE
 
 [MIT](https://github.com/HarborZeng/hexo-photoswipe/blob/master/LICENSE)
 
-## Demo
+## Tutorial
 
 Suppose you have installed the dependencies above. Then you may proceed.
 
@@ -98,8 +105,8 @@ in your hexo blog's `_config.yml`:
 
 ```yaml
 # <div class="image-container" data-type="content-image" data-size="100x100"><img src="xxx" data-original="yyy"></img></div>'
-# imgSrcIn: dataOriginal if you don't install hexo-lazyload-image, or src as default
-# dataType is a presered attr, usless now but you can custum in your own js with this unique selector.
+# imgSrcIn: dataOriginal if you install hexo-lazyload-image, or src as default
+# dataType is a presered attr. It is usless now but you can custum in your own js with this unique selector.
 # className you can custom the class for div, in your own css file as you want.
 # imageFileBaseDir is the base directory where hexo-photoswipe would find images, eg, source/_posts/my-first-post/cover.jpg. The final pattern is {imageFileBaseDir}/{YourPostTitle}/{imageName}.{imageFormat}.
 photoswipe:
@@ -225,13 +232,12 @@ $('someSelectorToYourImage').each(function (index) {
     captionEle.className += ' center-caption'
     captionEle.innerText = captionText
     captionDiv.appendChild(captionEle)
-    
+
     // insert where appropriate
     this.parentElement.insertAdjacentElement('afterend', captionDiv)
   }
   
   if (this.parentNode.getAttribute('data-size')) {
-    // images introduced in {% asset_img foo.bar "foobar some text" %} way
     let resolution = this.parentNode.getAttribute('data-size').split('x')
     imgSrcItem.push({
       src: imgPath,
@@ -240,18 +246,11 @@ $('someSelectorToYourImage').each(function (index) {
       title: captionText
     })
   } else {
-    // images introduced in ![foobar some text](http(s)://www.john.doe/foo.bar) way
     imgSrcItem.push({
         src: imgPath,
         w: this.naturalWidth || window.innerWidth,
         h: this.naturalHeight || window.innerHeight,
         title: captionText
-    })
-    
-    // when the image loaded, update the w and h
-    this.addEventListener('load', function (e) {
-        imgSrcItem[index].w = this.naturalWidth
-        imgSrcItem[index].h = this.naturalHeight
     })
   }
 })
@@ -274,6 +273,17 @@ $('someSelectorToYourImage').each(function (i) {
       counterEl: true,
       preloaderEl: true,
       history: false,
+      getThumbBoundsFn: function (index) {
+        // find thumbnail element
+        var thumbnail = document.querySelectorAll('#articleContent img')[index];
+        // get window scroll Y
+        var pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // optionally get horizontal scroll
+        // get position of element relative to viewport
+        var rect = thumbnail.getBoundingClientRect();
+        // w = width
+        return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+      }
     }
     let gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgSrcItem, options)
     gallery.listen('imageLoadComplete', function (index, item) {
