@@ -1,3 +1,5 @@
+**This plugin in not a good solution for hexo photoswipe because it require image width and height which are calculated by your machine. So time is wasted is this procedure. And this plugin require a lot of javascript experience.**
+
 # hexo-photoswipe
 
 [![npm version](https://badge.fury.io/js/hexo-photoswipe.svg)](https://badge.fury.io/js/hexo-photoswipe)
